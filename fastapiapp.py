@@ -2,6 +2,13 @@
 # run with
 # uvicorn fastapiapp:app --host 192.168.0.167 --port 8000 --reload --log-level trace
 
+# to connect to the database, need to run
+'''
+psql -h 127.0.0.1 -p 5432 -U myuser -c "SELECT * from person;" mydb
+
+'''
+
+
 from fastapi import FastAPI
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
