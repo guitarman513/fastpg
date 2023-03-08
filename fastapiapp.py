@@ -1,7 +1,11 @@
+# 
+# run with
+# uvicorn fastapiapp:app --host 192.168.0.167 --port 8000 --reload --log-level trace
+
 from fastapi import FastAPI
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 
 app = FastAPI()
 def build_connection_string():
@@ -33,7 +37,7 @@ def create_table():
     Base.metadata.create_all(engine)
     return{"message":"table added"}
 
-@app.post("add_row")
+@app.post("/add_row")
 def add_row(name:str, age:int):
     person = Person(name=name, age=age)
     session.add(person)

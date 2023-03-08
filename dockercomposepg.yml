@@ -1,0 +1,17 @@
+version: '3.9'
+# Launch in shell with: (-d is detatched mode so runs in bg)
+# docker-compose -f <file> --env-file <envfile> up -d
+services:
+  postgres:
+    image: ${PG_IMAGE}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+
